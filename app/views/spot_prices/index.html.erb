@@ -1,0 +1,24 @@
+<h1>Spot Prices for m1.large Linux/UNIX Instances by Availability Zone</h1>
+<% @spot_prices.each do |az,spot_price_data| %>
+  <br>
+  <script>var $container = $('<div>').appendTo(document.body);
+    $container.highcharts('StockChart', {
+      rangeSelector : {
+	    selected : 1
+  	  },
+
+      title : {
+	    text : '<%= az %>'
+      },
+			
+      series : [{
+	    name : 'spot_price_data',
+	    data : <%= spot_price_data %>,
+	    tooltip: {
+	      valueDecimals: 4
+	    }
+      }]
+    });
+  </script>
+  <br>
+<% end %>
