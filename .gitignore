@@ -2,3 +2,4 @@
 /log/*.log
 /tmp
 aws_env.rb
+.DS_Store
