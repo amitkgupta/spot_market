@@ -1,17 +1,20 @@
-<h1>Spot Prices for cr1.8xlarge Linux/UNIX VPC Instances by Availability Zone</h1>
-<% @spot_prices.each do |az,spot_price_data| %>
+<% @spot_prices.each do |k,v| %>
   <br>
-  <script>var $container = $('<div>').appendTo(document.body);
-    $container.highcharts('StockChart', {
-      rangeSelector: { selected: 1 },
-      title: { text: '<%= az %>' },
-      series: [{
-	    name: 'spot_price_data',
-	    data: <%= spot_price_data %>,
-	    tooltip: { valueDecimals: 4 }
-      }],
-      xAxis: { ordinal: false }
-    });
-  </script>
-  <br>
+  Instance Type: <%= k[0] %>
+  Product Description: <%= k[1] %>
+  <% v.each do |az, spot_price_data| %>
+    <script>var $container = $('<div>').appendTo(document.body);
+      $container.highcharts('StockChart', {
+        rangeSelector: { selected: 1 },
+        title: { text: '<%= az %>' },
+        series: [{
+	      name: 'spot_price_data',
+	      data: <%= spot_price_data %>,
+	      tooltip: { valueDecimals: 4 }
+        }],
+        xAxis: { ordinal: false }
+      });
+    </script>
+    <br>
+  <% end %>
 <% end %>
